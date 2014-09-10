@@ -1,0 +1,5 @@
+{
+  "name": "dicebot",
+  "icon": "http://rlv.zcache.com/d20_black_orange_square_stickers-re4e2296c3fb041d881a542d645f6e31f_v9wf3_8byvr_512.jpg",
+  "triggers": ["roll"]  
+}
