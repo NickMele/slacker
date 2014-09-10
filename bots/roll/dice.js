@@ -80,7 +80,9 @@ function execute(command) {
 
     data.outcomes.push(outcome);
 
-    data.text.push(text);
+    if (text.length) {
+      data.text.push(text);
+    }
     data.verbose.push(verbose);
 
   });
@@ -98,9 +100,12 @@ function execute(command) {
       return '(' + value.join(' ') + ')';
     }).join(' + ');
     data.text += ' = ' + total;
+  } if (data.text.length === 0) {
+    data.text = total;
   } else {
     data.text = _.flatten(data.text).join(' ') + ' = ' + total;
   }
+  data.text = 'The result of ' + data.command + ' is ' + data.text;
 
   return data;
 }
