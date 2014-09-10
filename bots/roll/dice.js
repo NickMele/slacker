@@ -18,6 +18,11 @@ function execute(command) {
     verbose: []
   };
 
+  // validate everthing real quick
+  if (parsed.repeat > 100 || parsed.times > 100 || parsed.faces > 100 || parsed.multiplier > 100) {
+    return;
+  }
+
   _.times(data.parsed.repeat, function(n) {
     var text = [];
     var verbose = [];
