@@ -58,9 +58,9 @@ function execute(command) {
       return sum + roll;
     });
     if (parsed.times > 1) {
-      text.push('( ' + outcome.rolls.join(' + ') +' )');
       verbose.push('Adding up all the rolls: ' + outcome.rolls.join(' + ') + ' = ' + outcome.total);
     }
+    text.push('[ ' + outcome.rolls.join(' + ') +' ]');
 
     // apply the multiplier
     if (parsed.multiplier > 1) {
@@ -94,7 +94,6 @@ function execute(command) {
 
   data.verbose = _.flatten(data.verbose);
   data.verbose.push('The results of ' + data.command + ' is ' + total);
-
   if (data.text.length > 1) {
     data.text = _.map(data.text, function(value, outcome) {
       return '(' + value.join(' ') + ')';
