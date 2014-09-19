@@ -1,3 +1,4 @@
 module.exports = {
-  roll: require('./roll')
+  roll: require('./roll'),
+  emoji: require('./emoji')
 };

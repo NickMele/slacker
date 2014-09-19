@@ -1,0 +1,5 @@
+{
+  "name": "emojibot",
+  "icon": "http://www.free-emoticons.com/files/avatar-emoticons/2423.png",
+  "triggers": ["emoji", "moji", "emoti"]  
+}
