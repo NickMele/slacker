@@ -1,5 +1,5 @@
 var config = require('./config');
-var dice = require('./dice');
+var Dice = require('node-dice-js');
 
 module.exports = {
 
@@ -8,10 +8,13 @@ module.exports = {
   triggers: config.triggers,
 
   handle: function(slacker, callback) {
-    var command = slacker.directive || 'd20';
-    var results = dice.execute(command);
+    var dice = new Dice();
+    var command = slacker.directive;
+    var results = '';
 
-    if (!results) {
+    try {
+      results = dice.execute(command);
+    } catch(error) {
       results = "No, you go find some dice and roll a " + command;
     }
 
