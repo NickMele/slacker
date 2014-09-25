@@ -1,29 +1,14 @@
-var express = require('express');
-var logger = require('morgan');
-var bodyParser = require('body-parser');
-var errorhandler = require('errorhandler');
-
+// Dependencies
+var Server = require('./lib/server');
 var slacker = require('./lib/slacker');
 var bots = require('./bots');
 
-// create the express app
-var app = express();
-
-// all environments
-app.set('port', process.env.PORT || 3000);
-app.use(logger('dev'));
-app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: true }));
-
-// development only
-if ('development' == app.get('env')) {
-  app.use(errorhandler());
-}
+// Create a new server
+var server = new Server();
 
 // load up the slacker app
 slacker.registerBots(bots);
-slacker.registerRoute(app);
+slacker.registerRoute(server.app);
 
-var server = app.listen(app.get('port'), function() {
-  console.info('Slacking on port %d', server.address().port);
-});
+// Start the server
+server.start();
