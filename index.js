@@ -1,14 +1,11 @@
+// TODO: setup default slacker config, and pass options to slacker
+
+
 // Dependencies
-var Server = require('./lib/server');
-var slacker = require('./lib/slacker');
-var bots = require('./bots');
+var Slacker = require('./lib/slacker');
 
-// Create a new server
-var server = new Server();
+// Create a slacker
+var slacker = new Slacker();
 
-// load up the slacker app
-slacker.registerBots(bots);
-slacker.registerRoute(server.app);
-
-// Start the server
-server.start();
+// Start slacking
+slacker.slack();
