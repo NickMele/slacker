@@ -34,7 +34,7 @@ module.exports = {
       // get a random gif from the results
       var random = _.isArray(results) ? _.sample(results) : results;
       // image url
-      var image = random && (random.images.original.url || random.image_url);
+      var image = random && (random.images && random.images.original && random.images.original.url || random.image_url);
       return callback(null, image);
     });
 
