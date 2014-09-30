@@ -1,0 +1,7 @@
+{
+  "name": "gifbot",
+  "icon": null,
+  "triggers": ["gif"],
+
+  "api_key": "dc6zaTOxFJmzC"
+}
