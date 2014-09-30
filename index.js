@@ -4,7 +4,7 @@ var bots = require('./bots');
 
 var options = {
   name: 'Slackerz',
-  port: 3000,
+  port: process.env.PORT || 3000,
   bots: bots
 };
 
