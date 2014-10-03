@@ -1,5 +1,9 @@
 var request = require('request');
 var _ = require('lodash');
+var nconf = require('nconf');
+
+// Constants
+var API_KEY = nconf.get('GIPHY_API_KEY');
 
 module.exports = {
 
@@ -12,7 +16,7 @@ module.exports = {
     var directive = stash.directive;
     var url = 'http://api.giphy.com/v1/gifs';
     var qs = {
-      api_key: 'dc6zaTOxFJmzC'
+      api_key: API_KEY
     };
 
     // if there is a directive, use the search endpoint

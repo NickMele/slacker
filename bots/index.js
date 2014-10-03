@@ -2,5 +2,6 @@ module.exports = {
   roll: require('./roll'),
   emoji: require('./emoji'),
   meme: require('./meme'),
-  gif: require('./gif')
+  gif: require('./gif'),
+  git: require('./git')
 };

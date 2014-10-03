@@ -1,7 +1,10 @@
 // Dependencies
 var slacker = require('./lib/slacker');
-var bots = require('./bots');
+var nconf = require('nconf');
 
+nconf.env().file({file:'config.json'});
+
+var bots = require('./bots');
 var options = {
   name: 'Slackerz',
   port: process.env.PORT || 3000,

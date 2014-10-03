@@ -1,10 +1,10 @@
 var request = require('request');
 var _ = require('lodash');
 var URL = require('url');
+var nconf = require('nconf');
 
 // Constants
-var CLIENT_ID = '08f9ef1767ed8c4';
-var CLIENT_SECRET = '417feb8616cbc4f8c3d130373822d536da418e2d';
+var CLIENT_ID = nconf.get('IMGUR_CLIENT_ID');
 
 module.exports = {
 
