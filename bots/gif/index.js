@@ -10,9 +10,9 @@ module.exports = {
 
   handle: function(slacker, callback) {
     var directive = slacker.directive;
-    var url = 'http://api.giphy.com/v1/gifs';
+    var url = config.api.url;
     var qs = {
-      api_key: config.api_key
+      api_key: config.api.key
     };
 
     // if there is a directive, use the search endpoint

@@ -3,5 +3,8 @@
   "icon": null,
   "triggers": ["gif"],
 
-  "api_key": "dc6zaTOxFJmzC"
+  "api": {
+    "key": "dc6zaTOxFJmzC",
+    "url": ""
+  }
 }
