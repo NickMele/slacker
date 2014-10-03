@@ -1,5 +1,5 @@
 // Dependencies
-var Slacker = require('./lib/slacker');
+var slacker = require('./lib/slacker');
 var bots = require('./bots');
 
 var options = {
@@ -8,8 +8,8 @@ var options = {
   bots: bots
 };
 
-// Create a slacker
-var slacker = new Slacker(options);
+// Setup slacker
+slacker.setup(options);
 
 // Start slacking
 slacker.slack();

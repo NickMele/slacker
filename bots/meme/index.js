@@ -1,16 +1,19 @@
-var config = require('./config');
 var request = require('request');
 var _ = require('lodash');
 var URL = require('url');
 
+// Constants
+var CLIENT_ID = '08f9ef1767ed8c4';
+var CLIENT_SECRET = '417feb8616cbc4f8c3d130373822d536da418e2d';
+
 module.exports = {
 
-  name: config.name,
-  icon: null,
-  triggers: config.triggers,
+  name: 'meme',
+  triggers: ['meme'],
 
-  handle: function(slacker, callback) {
-    var directive = slacker.directive;
+  handle: function(req, res, next) {
+    var stash = req.stash
+    var directive = stash.directive;
     var query = 'meme:' + directive;
     var url = 'https://api.imgur.com/3/gallery/search/top/';
     var windows = ['day', 'week', 'month', 'year', 'all'];
@@ -30,7 +33,7 @@ module.exports = {
         q: query
       },
       headers: {
-        'Authorization': 'Client-ID ' + config.client_id
+        'Authorization': 'Client-ID ' + CLIENT_ID
       }
     }, function(error, response, json) {
       // get the list of results
@@ -43,9 +46,16 @@ module.exports = {
       var random = _.sample(images);
       // get the link
       var link = random && random.link;
-      return callback(null, link);
+      return next(null, link);
     });
 
+  },
+
+  respond: function(req, res, finalize) {
+    var stash = req.stash;
+    var data = stash && stash.data;
+    var message = data && data.text || data;
+    return finalize(null, message);
   }
 }
 

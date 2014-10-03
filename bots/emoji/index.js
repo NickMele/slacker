@@ -1,15 +1,14 @@
-var config = require('./config');
-
 module.exports = {
 
-  name: config.name,
-  icon: config.icon,
-  triggers: config.triggers,
+  name: 'emojibot',
+  icon: 'http://www.free-emoticons.com/files/avatar-emoticons/2423.png',
+  triggers: ['emoji', 'moji', 'emoti'],
 
-  handle: function(slacker, callback) {
+  handle: function(req, res, next) {
+    return next(null, null);
+  },
 
-
-
-    return callback(null, '');
+  respond: function(req, res, finalize) {
+    return finalize(null, null)
   }
 };

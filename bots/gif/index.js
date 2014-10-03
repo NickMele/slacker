@@ -1,18 +1,18 @@
-var config = require('./config');
 var request = require('request');
 var _ = require('lodash');
 
 module.exports = {
 
-  name: config.name,
-  icon: config.icon,
-  triggers: config.triggers,
+  name: 'gifbot',
+  icon: null,
+  triggers: ['gif'],
 
-  handle: function(slacker, callback) {
-    var directive = slacker.directive;
-    var url = config.api.url;
+  handle: function(req, res, next) {
+    var stash = req.stash
+    var directive = stash.directive;
+    var url = 'http://api.giphy.com/v1/gifs';
     var qs = {
-      api_key: config.api.key
+      api_key: 'dc6zaTOxFJmzC'
     };
 
     // if there is a directive, use the search endpoint
@@ -35,8 +35,15 @@ module.exports = {
       var random = _.isArray(results) ? _.sample(results) : results;
       // image url
       var image = random && (random.images && random.images.original && random.images.original.url || random.image_url);
-      return callback(null, image);
+      return next(null, image);
     });
 
+  },
+
+  respond: function(req, res, finalize) {
+    var stash = req.stash;
+    var data = stash && stash.data;
+    var message = data && data.text || data;
+    return finalize(null, message);
   }
 };

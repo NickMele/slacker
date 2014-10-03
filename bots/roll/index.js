@@ -1,3 +1,4 @@
+var slacker = require(process.cwd() + '/lib/slacker');
 var Dice = require('node-dice-js');
 
 module.exports = {
@@ -6,10 +7,10 @@ module.exports = {
   icon: 'http://rlv.zcache.com/d20_black_orange_square_stickers-re4e2296c3fb041d881a542d645f6e31f_v9wf3_8byvr_512.jpg',
   triggers: ['roll'],
 
-  handle: function(req, res, respond) {
-    var slacker = req.slacker;
+  handle: function(req, res, next) {
+    var stash = req.stash;
     var dice = new Dice();
-    var command = slacker.hooks.incoming.directive;
+    var command = stash.hooks.incoming.directive;
     var data = '';
 
     try {
@@ -18,12 +19,12 @@ module.exports = {
       data = "No, you go find some dice and roll a " + command;
     }
 
-    return respond(null, data);
+    next(null, data);
   },
 
-  respond: function(req, res, send) {
-    var slacker = req.slacker;
-    var data = slacker && slacker.data;
+  respond: function(req, res, finalize) {
+    var stash = req.stash;
+    var data = stash && stash.data;
     var text = data && data.text || data;
     var message = {
       text: text,
@@ -32,6 +33,7 @@ module.exports = {
         color: 'good'
       }]
     };
-    return send(null, message);
+    return finalize(null, message);
   }
+
 }
